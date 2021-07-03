@@ -1,0 +1,88 @@
+body {
+    background-color: #e4e4e4; /*#f8f9fa or #f3f3f3*/
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    font-size: 48px;
+    color: white;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 20vw;
+    min-width: 270px;
+    background-color: #3445b4;
+    box-shadow: 4px 1px 5px rgba(0, 0, 0, 0.1);
+    display: grid;
+    justify-content: space-evenly;
+}
+
+.title {
+    margin-top: 30px;
+    justify-self: center;
+}
+
+.info {
+    justify-self: center;
+}
+
+.info-disp {
+    background-color: rgb(59, 78, 198);
+    padding: 15px 15px 15px 15px;
+    height: max-content;
+    width: max-content;
+    font-size: 18px;
+    color: white;
+}
+
+.book-options-txt, .storage-options-txt, .info-txt {
+    border-bottom: 2px rgba(255, 255, 255, 0.1);
+    border-bottom-style: solid;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
+
+.book-options {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.storage-options {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    color: rgba(255,255,255,.5);
+    bottom: 30px;
+    align-self: end;
+    margin-bottom: 20px;
+}
+
+.footer > a {
+    color: rgba(255,255,255,.5);
+}
+
+.stmt-disp {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    border-bottom: 2px rgba(255, 255, 255, 0.1);
+    border-bottom-style: solid;
+}
+
+.book-container {
+    width: 100%;
+}

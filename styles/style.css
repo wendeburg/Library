@@ -12,6 +12,10 @@ nav {
     display: none;
 }
 
+.mobile-menu {
+    display: none;
+}
+
 .flex-container {
     display: flex;
     flex-direction: row;
@@ -200,6 +204,8 @@ nav {
 @media only screen and (max-width: 589px) {
     .books-container {
       grid-template-columns: repeat(2, 1fr);
+      margin-top: 30px;
+      margin-bottom: 30px;
     }
 
     .sidebar {
@@ -218,7 +224,6 @@ nav {
         justify-content: space-between;
         background-color: rgb(59, 78, 198);
         box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
     }
 
     .title-mobile {
@@ -261,6 +266,23 @@ nav {
     }
 
     /* Burger-Menu Animation */
+    .mobile-menu.show-menu {
+        display: grid;
+        height: calc(100vh - 100px);
+        width: 100vw;
+        background-color: #3445b4;
+        display: grid;
+        justify-content: space-evenly;
+    }
+
+    .info {
+        margin-top: 20px;
+    }
+
+    body.hidden-overflow {
+        overflow: hidden;
+    }
+
     .burger-menu.open .burger-btn {
         background: transparent;
     }
@@ -273,7 +295,6 @@ nav {
     .burger-menu.open .burger-btn::after {
         transform: rotate(-45deg);
         transition: all 100ms ease-in-out;
-
     }
 }
 

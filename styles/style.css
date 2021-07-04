@@ -83,6 +83,82 @@ h1 {
     border-bottom-style: solid;
 }
 
-.book-container {
+.books-container {
     width: 100%;
+    display: grid;
+    margin: 20px;
+}
+
+
+.book {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/08/Miguel_de_Cervantes_%281605%29_El_ingenioso_hidalgo_Don_Quixote_de_la_Mancha.png);
+    background-size: cover;
+    max-width: 270px;
+    max-height: 330px;
+    border-radius: 10px;
+    padding: 32px 0 0;
+    transition: transform 500ms ease;
+    overflow: hidden;
+}
+
+.book:hover, .book:focus-within {
+    transform: scale(1.05);
+}
+
+.book-content {
+    color: white;
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(hsl(0 0% 0% / 0), hsl(0 0% 0% / 0.4) 20%, hsl(0 0% 0% / 0.8));
+}
+
+.book-content > p {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.book-content > button {
+    width: max-content;
+    height: 38px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: 0px;
+    border-radius: 2px;
+    color: white;
+}
+
+
+
+#remove-book {
+    background-color: rgb(228, 26, 103);
+}
+
+#edit-book {
+    background-color: #33C3F0;
+}
+
+@media (hover) {
+    .book-content {
+        transform: translateY(55%);
+        transition: transform 500ms ease;
+    }
+
+    .book:hover > .book-content, .book:focus-within .book-content {
+        transform: translateY(0%);
+    }
+    
+    .book-content > *:not(.book-title, .book-author) {
+        opacity: 0;
+        transition: transform 500ms ease;
+        transition: opacity 500ms linear;
+    }
+    
+    .book:hover .book-content > *:not(.book-title, .book-author),
+    .book:focus-within .book-content > *:not(.book-title, .book-author) {
+        opacity: 1;
+        transition: transform 500ms ease;
+        transition-delay: 250ms;
+    }
 }

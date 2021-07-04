@@ -103,18 +103,14 @@ nav {
 .book {
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/08/Miguel_de_Cervantes_%281605%29_El_ingenioso_hidalgo_Don_Quixote_de_la_Mancha.png);
     background-size: cover;
-    max-width: 270px;
-    max-height: 330px;
+    width: 270px;
+    height: 330px;
     border-radius: 10px;
     padding: 32px 0 0;
     transition: transform 500ms ease;
     overflow: hidden;
     justify-self: center;
     align-self: center;
-}
-
-.book:hover, .book:focus-within {
-    transform: scale(1.05);
 }
 
 .book-content {
@@ -150,6 +146,10 @@ nav {
 }
 
 @media (hover) {
+    .book:hover, .book:focus-within {
+        transform: scale(1.05);
+    }
+
     .book-content {
         transform: translateY(55%);
         transition: transform 500ms ease;
@@ -274,5 +274,51 @@ nav {
         transform: rotate(-45deg);
         transition: all 100ms ease-in-out;
 
+    }
+}
+
+@media only screen and (max-width: 555px) {
+    .book {
+      transform: scale(0.95)
+    }
+}
+
+@media only screen and (max-width: 560px) and (hover){
+    .book:hover, .book:focus-within {
+        transform: scale(1);
+    }
+}
+
+@media only screen and (max-width: 505px) and (hover: none){
+    .book {
+      transform: scale(0.90);
+      width: auto;
+      height: max-content;
+    }
+}
+
+@media only screen and (max-width: 505px) and (hover){
+    .books-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .book {
+        transform: scale(1);
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .books-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .book {
+        transform: scale(1);
+    }
+}
+
+@media only screen and (max-width: 375px) and (hover){
+    .book:hover, .book:focus-within {
+        transform: scale(1.05);
     }
 }

@@ -8,6 +8,10 @@ h1 {
     color: white;
 }
 
+nav {
+    display: none;
+}
+
 .flex-container {
     display: flex;
     flex-direction: row;
@@ -21,6 +25,8 @@ h1 {
     box-shadow: 4px 1px 5px rgba(0, 0, 0, 0.1);
     display: grid;
     justify-content: space-evenly;
+    position: sticky;
+    top: 0;
 }
 
 .title {
@@ -86,6 +92,10 @@ h1 {
 .books-container {
     width: 100%;
     display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 20px;
+    justify-content: space-around;
+    grid-auto-flow: row;
     margin: 20px;
 }
 
@@ -99,6 +109,8 @@ h1 {
     padding: 32px 0 0;
     transition: transform 500ms ease;
     overflow: hidden;
+    justify-self: center;
+    align-self: center;
 }
 
 .book:hover, .book:focus-within {
@@ -129,8 +141,6 @@ h1 {
     color: white;
 }
 
-
-
 #remove-book {
     background-color: rgb(228, 26, 103);
 }
@@ -160,5 +170,109 @@ h1 {
         opacity: 1;
         transition: transform 500ms ease;
         transition-delay: 250ms;
+    }
+}
+
+@media only screen and (max-width: 1800px) {
+    .books-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+}
+  
+@media only screen and (max-width: 1460px) {
+    .books-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+  
+@media only screen and (max-width: 1160px) {
+    .books-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 890px) {
+    .books-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width: 589px) {
+    .books-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .book {
+        max-width: 240px;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        height: 100px;
+        width: 100%;
+        justify-content: space-between;
+        background-color: rgb(59, 78, 198);
+        box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .title-mobile {
+        align-self: center;
+        margin-left: 30px;
+    }
+
+    .burger-menu {
+        align-self: center;
+        margin-right: 30px;
+        height: 55px;
+        width: 55px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .burger-btn {
+        align-self: center;
+        height: 6px;
+        width: 45px;
+        background-color: white;
+    }
+
+    .burger-btn::after,
+    .burger-btn::before {
+        content: '';
+        position: absolute;
+        height: 6px;
+        width: 45px;
+        background-color: white;
+        transition: all 100ms ease-in-out;
+    }
+
+    .burger-btn::after {
+        transform: translateY(15px);
+    }
+
+    .burger-btn::before {
+        transform: translateY(-15px);
+    }
+
+    /* Burger-Menu Animation */
+    .burger-menu.open .burger-btn {
+        background: transparent;
+    }
+
+    .burger-menu.open .burger-btn::before {
+        transform: rotate(45deg);
+        transition: all 100ms ease-in-out;
+    }
+
+    .burger-menu.open .burger-btn::after {
+        transform: rotate(-45deg);
+        transition: all 100ms ease-in-out;
+
     }
 }

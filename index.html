@@ -79,8 +79,8 @@
                     <div class="book-content">
                         <h2 class="book-title">Don Quijote de la Mancha</h2>
                         <p class="book-author">Miguel de Cervantes</p>
-                        <p class="book-pages">1345</p>
-                        <p class="read-pages">301</p>
+                        <p class="book-pages">1345 pages</p>
+                        <p class="read-pages">301 read</p>
                         <button id="read-book">Not Read</button>
                         <button id="remove-book">Remove Book</button>
                     </div>
@@ -90,12 +90,31 @@
 
         <div class="modal-wrap">
             <div class="modal">
-                <h3>Add a Book</h3>
-                <input id="book-name" type="text" required>
-                <input id="book-cover" type="url">
-                <input id="book-author" type="text" required>
-                <input id="book-pages" type="number" required>
-                <input id="book-read" type="checkbox">
+                <h3>Add a New Book</h3>
+                <div class="input-container">
+                    <label for="book-name">Book title*</label>
+                    <input id="book-name" type="text" placeholder="Title" required>
+                </div>
+                <div class="input-container">
+                    <label for="book-cover">Cover image URL</label>
+                    <input id="book-cover" type="url" placeholder="URL">
+                </div>
+                <div class="input-container">
+                    <label for="book-author">Author's name*</label>
+                    <input id="book-author" type="text" placeholder="Author" required>
+                </div>
+                <div class="input-container">
+                    <label for="book-pages">Number of pages*</label>
+                    <input id="book-pages" type="number" placeholder="Pages" required>
+                </div>
+                <div class="input-container">
+                    <label for="book-pages-read">Pages read*</label>
+                    <input id="book-pages-read" type="number" placeholder="Read pages" required>
+                </div>
+                <div class="input-container">
+                    <label for="book-read">Is the book read?*</label>
+                    <input id="book-read" type="checkbox">
+                </div>
                 <div>
                     <button id="add-book-btn">Add Book</button>
                     <button id="cancel-btn">Cancel</button>

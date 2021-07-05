@@ -145,13 +145,21 @@ nav {
     cursor: pointer;
 }
 
+#remove-book:hover {
+    background-color: rgb(206, 0, 79);
+}
+
 #read-book {
     background-color: #33C3F0;
     cursor: pointer;
 }
 
+#read-book:hover {
+    background-color: rgb(1, 166, 216);
+}
+
 .modal-wrap {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -162,7 +170,7 @@ nav {
 }
 
 .modal {
-    height: 70vh;
+    height: 80vh;
     width: 40vw;
     min-height: 300px;
     min-width: 300px;
@@ -175,6 +183,61 @@ nav {
     justify-content: space-around;
 }
 
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal h3 {
+    font-size: 24px;
+}
+
+.modal button {
+    width: 90px;
+    height: 38px;
+    font-size: 16px;
+    border: 0px;
+    border-radius: 2px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.modal label {
+    align-self: flex-start;
+}
+
+#add-book-btn {
+    margin-right: 20px;
+    background-color: #009e22;
+    cursor: pointer;
+}
+
+#add-book-btn:hover {
+    background-color: #01801d;
+}
+
+#cancel-btn {
+    background-color: #F45B69;
+    cursor: pointer;
+}
+
+#cancel-btn:hover {
+    background-color: #e43342;
+}
+
+.modal input[type="text"],  input[type="url"], input[type="number"]{
+    min-width: 208px;
+    width: 30vw;
+    height: 40px;
+    border: 1px solid rgb(146, 146, 146);
+    border-radius: 3px;
+}
+
+.modal input:focus {
+    outline: none;
+}
 
 @media (hover) {
     .book:hover, .book:focus-within {

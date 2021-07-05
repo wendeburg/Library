@@ -142,10 +142,12 @@ nav {
 
 #remove-book {
     background-color: rgb(228, 26, 103);
+    cursor: pointer;
 }
 
-#edit-book {
+#read-book {
     background-color: #33C3F0;
+    cursor: pointer;
 }
 
 @media (hover) {

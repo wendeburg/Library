@@ -105,7 +105,8 @@ nav {
 
 
 .book {
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/08/Miguel_de_Cervantes_%281605%29_El_ingenioso_hidalgo_Don_Quixote_de_la_Mancha.png);
+    background: rgb(2,0,36);
+    background: linear-gradient(32deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     background-size: cover;
     width: 270px;
     height: 330px;
@@ -227,7 +228,7 @@ nav {
     background-color: #e43342;
 }
 
-.modal input[type="text"],  input[type="url"], input[type="number"]{
+.modal input[type="text"],  input[type="url"], input[type="number"], input[type="date"]{
     min-width: 208px;
     width: 30vw;
     height: 40px;

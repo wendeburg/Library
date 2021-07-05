@@ -93,7 +93,7 @@ nav {
     border-bottom-style: solid;
 }
 
-.books-container {
+.book-container {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -116,7 +116,7 @@ nav {
     justify-self: center;
 }
 
-.book-content {
+.book-info {
     color: white;
     text-align: left;
     padding: 20px;
@@ -125,12 +125,12 @@ nav {
     background: linear-gradient(hsl(0 0% 0% / 0), hsl(0 0% 0% / 0.4) 20%, hsl(0 0% 0% / 0.8));
 }
 
-.book-content > p {
+.book-info > p {
     margin-top: 3px;
     margin-bottom: 3px;
 }
 
-.book-content > button {
+.book-info > button {
     width: max-content;
     height: 38px;
     margin-top: 10px;
@@ -239,28 +239,32 @@ nav {
     outline: none;
 }
 
+.hide {
+    display: none;
+}
+
 @media (hover) {
     .book:hover, .book:focus-within {
         transform: scale(1.05);
     }
 
-    .book-content {
+    .book-info {
         transform: translateY(55%);
         transition: transform 500ms ease;
     }
 
-    .book:hover > .book-content, .book:focus-within .book-content {
+    .book:hover > .book-info, .book:focus-within .book-info {
         transform: translateY(0%);
     }
     
-    .book-content > *:not(.book-title, .book-author) {
+    .book-info > *:not(.book-title, .book-author) {
         opacity: 0;
         transition: transform 500ms ease;
         transition: opacity 500ms linear;
     }
     
-    .book:hover .book-content > *:not(.book-title, .book-author),
-    .book:focus-within .book-content > *:not(.book-title, .book-author) {
+    .book:hover .book-info > *:not(.book-title, .book-author),
+    .book:focus-within .book-info > *:not(.book-title, .book-author) {
         opacity: 1;
         transition: transform 500ms ease;
         transition-delay: 250ms;
@@ -268,25 +272,25 @@ nav {
 }
 
 @media only screen and (max-width: 1800px) {
-    .books-container {
+    .book-container {
       grid-template-columns: repeat(4, 1fr);
     }
 }
   
 @media only screen and (max-width: 1460px) {
-    .books-container {
+    .book-container {
       grid-template-columns: repeat(3, 1fr);
     }
 }
   
 @media only screen and (max-width: 1160px) {
-    .books-container {
+    .book-container {
       grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media only screen and (max-width: 890px) {
-    .books-container {
+    .book-container {
       grid-template-columns: repeat(1, 1fr);
     }
 }
@@ -296,7 +300,7 @@ nav {
         margin-top: 100px;
     }
 
-    .books-container {
+    .book-container {
       grid-template-columns: repeat(2, 1fr);
       margin-top: 30px;
       margin-bottom: 30px;
@@ -413,7 +417,7 @@ nav {
 }
 
 @media only screen and (max-width: 505px) and (hover){
-    .books-container {
+    .book-container {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -423,7 +427,7 @@ nav {
 }
 
 @media only screen and (max-width: 375px) {
-    .books-container {
+    .book-container {
         grid-template-columns: repeat(1, 1fr);
     }
 

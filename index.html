@@ -36,7 +36,7 @@
 
             <div class="book-options">
                 <p class="book-options-txt">Options</p>
-                <button id="add-book">Add Book</button>
+                <button class="show-modal">Add Book</button>
             </div>
 
             <div class="storage-options">
@@ -63,7 +63,7 @@
 
                 <div class="book-options">
                     <p class="book-options-txt">Options</p>
-                    <button id="add-book">Add Book</button>
+                    <button class="show-modal">Add Book</button>
                 </div>
 
                 <div class="storage-options">
@@ -75,9 +75,9 @@
                 <p class="footer">Made by <a href="#">Francisco Wendeburg</a></p>
             </div>
 
-            <div class="books-container">
+            <div class="book-container">
                 <div class="book">
-                    <div class="book-content">
+                    <div class="book-info">
                         <h2 class="book-title">Don Quijote de la Mancha</h2>
                         <p class="book-author">Miguel de Cervantes</p>
                         <p class="book-pages">1345 pages</p>
@@ -89,12 +89,12 @@
             </div>
         </div>
 
-        <div class="modal-wrap">
+        <div class="modal-wrap hide">
             <div class="modal">
                 <h3>Add a New Book</h3>
                 <div class="input-container">
-                    <label for="book-name">Book title*</label>
-                    <input id="book-name" type="text" placeholder="Title" required>
+                    <label for="book-title">Book title*</label>
+                    <input id="book-title" type="text" placeholder="Title" required>
                 </div>
                 <div class="input-container">
                     <label for="book-cover">Cover image URL</label>

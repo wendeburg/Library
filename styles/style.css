@@ -114,7 +114,6 @@ nav {
     transition: transform 500ms ease;
     overflow: hidden;
     justify-self: center;
-    align-self: center;
 }
 
 .book-content {

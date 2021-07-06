@@ -8,7 +8,7 @@ const bookCoverImage = document.querySelector('#book-cover');
 const bookAuthorInput = document.querySelector('#book-author');
 const bookPagesInput = document.querySelector('#book-pages');
 const bookPublishDateInput = document.querySelector('#book-publish-date');
-const bookReadStatus = document.querySelector('#book-read');
+const bookReadStatusInput = document.querySelector('#book-read');
 const numBooksPara = document.querySelectorAll('.num-books');
 const numReadBooksPara = document.querySelectorAll('.num-read-books');
 const numUnfinishedBooksPara = document.querySelectorAll('.num-unfinished-books');
@@ -35,7 +35,7 @@ function addBookToLibrary() {
     let bookAuthor = bookAuthorInput.value;
     let bookPages = bookPagesInput.value;
     let bookPublishDate = setPublishDate(bookPublishDateInput.value);
-    let bookIsRead = bookReadStatus.checked;
+    let bookIsRead = bookReadStatusInput.checked;
 
     modal.classList.toggle('hide');
     clearInputs();
@@ -129,6 +129,7 @@ bookCoverImage.value = '';
 bookAuthorInput.value = '';
 bookPagesInput.value = '';
 bookPublishDateInput.value = '';
+bookReadStatusInput.checked = false;
 }
 
 function updateBookNums() {

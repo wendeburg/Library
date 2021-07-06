@@ -244,6 +244,12 @@ nav {
     display: none;
 }
 
+.book-info h2 {
+    max-width: 200px;
+    min-height: 72px;
+    text-overflow: ellipsis;
+}
+
 @media (hover) {
     .book:hover, .book:focus-within {
         transform: scale(1.05);

@@ -141,21 +141,21 @@ nav {
     color: white;
 }
 
-#remove-book {
+.remove-book {
     background-color: rgb(228, 26, 103);
     cursor: pointer;
 }
 
-#remove-book:hover {
+.remove-book:hover {
     background-color: rgb(206, 0, 79);
 }
 
-#read-book {
+.read-book {
     background-color: #33C3F0;
     cursor: pointer;
 }
 
-#read-book:hover {
+.read-book:hover {
     background-color: rgb(1, 166, 216);
 }
 

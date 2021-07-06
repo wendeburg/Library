@@ -9,6 +9,9 @@ const bookAuthorInput = document.querySelector('#book-author');
 const bookPagesInput = document.querySelector('#book-pages');
 const bookPublishDateInput = document.querySelector('#book-publish-date');
 const bookReadStatus = document.querySelector('#book-read');
+const numBooksPara = document.querySelectorAll('.num-books');
+const numReadBooksPara = document.querySelectorAll('.num-read-books');
+const numUnfinishedBooksPara = document.querySelectorAll('.num-unfinished-books');
 
 
 let myLibrary = [];
@@ -42,13 +45,16 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 
     createBookEntry(newBook);
+    updateBookNums();
 }
 
 function removeBook(e) {
-    myLibrary.splice(e.target.dataset.index);
+    myLibrary.splice(e.target.dataset.index, 1);
     
     book = document.getElementById(`${e.target.dataset.index}`);
     book.remove();
+
+    updateBookNums();
 }
 
 function setPublishDate(date) {
@@ -61,6 +67,8 @@ function createBookEntry(book) {
     let bookCard = document.createElement('div');
     bookCard.setAttribute("id", `${myLibrary.length-1}`);
     bookCard.classList.add('book');
+    
+    if (book.coverImage !== '') bookCard.style.cssText = `background: url(${book.coverImage});`;
 
     let bookInfo = document.createElement('div');
     bookInfo.classList.add('book-info');
@@ -82,12 +90,12 @@ function createBookEntry(book) {
     bookPublishDate.textContent = book.publishDate;
 
     let bookReadBtn = document.createElement('button');
-    bookReadBtn.setAttribute('id', 'read-book');
+    bookReadBtn.classList.add('read-book');
     bookReadBtn.textContent = 'Not Read';
 
     let bookRemoveBtn = document.createElement('button');
     bookRemoveBtn.setAttribute("data-index", `${myLibrary.length-1}`);
-    bookRemoveBtn.setAttribute('id', 'remove-book');
+    bookRemoveBtn.classList.add('remove-book');
     bookRemoveBtn.textContent = 'Remove Book';
 
     bookRemoveBtn.addEventListener('click', removeBook)
@@ -121,6 +129,38 @@ bookCoverImage.value = '';
 bookAuthorInput.value = '';
 bookPagesInput.value = '';
 bookPublishDateInput.value = '';
+}
+
+function updateBookNums() {
+    let numFinishedBooks = countFinishedBooks();
+
+    numBooksPara.forEach(para => {
+        para.textContent = `Total Books: ${myLibrary.length}`;
+    })
+
+    numReadBooksPara.forEach(para => {
+        para.textContent = `Read Books: ${numFinishedBooks}`
+    })
+
+    numUnfinishedBooksPara.forEach( para => { 
+        updateUnfinishedBooksNum(para, numFinishedBooks);
+    });
+}
+
+function updateUnfinishedBooksNum(para, num) {
+    para.textContent = `Unfinished books: ${myLibrary.length - num}`
+}
+
+function countFinishedBooks() {
+    let counter = 0;
+
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].isRead) {
+            counter++;
+        }
+    }
+
+    return counter;
 }
 
 addBookBtn.addEventListener('click', addBookToLibrary);

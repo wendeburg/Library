@@ -12,6 +12,7 @@ const bookReadStatusInput = document.querySelector('#book-read');
 const numBooksPara = document.querySelectorAll('.num-books');
 const numReadBooksPara = document.querySelectorAll('.num-read-books');
 const numUnfinishedBooksPara = document.querySelectorAll('.num-unfinished-books');
+const deleteDataBtn = document.querySelectorAll('.delete-data');
 
 
 let myLibrary = [];
@@ -23,10 +24,7 @@ function Book(title, URL, author, totalPages, publishDate, isRead) {
     this.totalPages = totalPages;
     this.publishDate = publishDate;
     this.isRead = isRead;
-
-    this.info = function() {
-        return `${title} by ${author} has a total of ${totalPages}. Read status: ${isRead}.`;
-    }
+    this.id = myLibrary.length;
 }
 
 function addBookToLibrary() {
@@ -46,6 +44,8 @@ function addBookToLibrary() {
 
     createBookEntry(newBook);
     updateBookNums();
+
+    populateStorage(newBook);
 }
 
 function removeBook(e) {
@@ -55,6 +55,8 @@ function removeBook(e) {
     book.remove();
 
     updateBookNums();
+
+    localStorage.removeItem(`${e.target.dataset.index}`);
 }
 
 function setPublishDate(date) {
@@ -164,6 +166,34 @@ function countFinishedBooks() {
     return counter;
 }
 
+function populateStorage(object) {
+    localStorage.setItem(`${object.id}`, JSON.stringify(object));
+}
+
+function getLocalStorageData() {
+    let i = 0;
+
+    while (localStorage.getItem(`${i}`)) {
+        let newBook = JSON.parse(localStorage.getItem(`${i}`));
+
+        myLibrary.push(newBook);
+
+        createBookEntry(newBook);
+        updateBookNums();
+
+        populateStorage(newBook);
+
+        i++;
+    }
+}
+
+function clearLocalStorage() {
+    localStorage.clear()
+}
+
+getLocalStorageData();
+
 addBookBtn.addEventListener('click', addBookToLibrary);
 cancelBtn.addEventListener('click', toggleModal);
 showModalBtn.forEach(btn => btn.addEventListener('click', toggleModal));
+deleteDataBtn.forEach(btn => btn.addEventListener('click', clearLocalStorage));

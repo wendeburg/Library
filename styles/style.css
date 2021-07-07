@@ -159,6 +159,10 @@ nav {
     background-color: rgb(1, 166, 216);
 }
 
+.read {
+    background-color: rgb(0, 74, 97);
+}
+
 .modal-wrap {
     background-color: rgba(0, 0, 0, 0.5);
     width: 100vw;

@@ -100,7 +100,9 @@ function createBookEntry(book) {
     bookRemoveBtn.classList.add('remove-book');
     bookRemoveBtn.textContent = 'Remove Book';
 
-    bookRemoveBtn.addEventListener('click', removeBook)
+    bookRemoveBtn.addEventListener('click', removeBook);
+    bookReadBtn.addEventListener('click', toggleReadStatus);
+    bookReadBtn.setAttribute("data-index", `${myLibrary.length-1}`);
 
     bookInfo.append(bookTitle);
     bookInfo.append(bookAuthor);
@@ -189,6 +191,20 @@ function getLocalStorageData() {
 
 function clearLocalStorage() {
     localStorage.clear()
+}
+
+function toggleReadStatus(e) {
+    myLibrary[e.target.dataset.index].isRead = !myLibrary[e.target.dataset.index].isRead;
+    e.target.classList.toggle('read');
+
+    if ( myLibrary[e.target.dataset.index].isRead) {
+        e.target.textContent = 'Read';
+    }
+    else {
+        e.target.textContent = 'Not Read';
+    }
+
+    updateBookNums();
 }
 
 getLocalStorageData();

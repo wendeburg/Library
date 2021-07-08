@@ -304,6 +304,10 @@ nav {
     .book-container {
       grid-template-columns: repeat(1, 1fr);
     }
+
+    .book {
+        margin-bottom: 10px;
+    }
 }
 
 @media only screen and (max-width: 589px) {
@@ -322,7 +326,7 @@ nav {
     }
 
     .book {
-        max-width: 240px;
+        width: 240px;
     }
 
     nav {
@@ -408,47 +412,17 @@ nav {
     }
 }
 
-@media only screen and (max-width: 555px) {
-    .book {
-      transform: scale(0.95)
-    }
-}
-
-@media only screen and (max-width: 560px) and (hover){
-    .book:hover, .book:focus-within {
-        transform: scale(1);
-    }
-}
-
-@media only screen and (max-width: 505px) and (hover: none){
-    .book {
-      transform: scale(0.90);
-      width: auto;
-      height: max-content;
-    }
-}
-
-@media only screen and (max-width: 505px) and (hover){
+@media only screen and (max-width: 570px) {
     .book-container {
         grid-template-columns: repeat(1, 1fr);
     }
 
     .book {
-        transform: scale(1);
+        width: 270px;
     }
 }
 
-@media only screen and (max-width: 375px) {
-    .book-container {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .book {
-        transform: scale(1);
-    }
-}
-
-@media only screen and (max-width: 375px) and (hover){
+@media only screen and (max-width: 570px) and (hover){
     .book:hover, .book:focus-within {
         transform: scale(1.05);
     }

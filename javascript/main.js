@@ -1,21 +1,40 @@
+const body = document.querySelector('body');
+const bookContainer = document.querySelector('.book-container');
+
+// Mobile phone navigation.
+const burgerMenuBtn = document.querySelector('.burger-menu');
+const menuOptions = document.querySelector('.mobile-menu');
+
+// Add book pop-up.
 const modal = document.querySelector('.modal-wrap');
 const showModalBtn = document.querySelectorAll('.show-modal');
 const addBookBtn = document.querySelector('#add-book-btn');
 const cancelBtn = document.querySelector('#cancel-btn');
-const bookContainer = document.querySelector('.book-container');
 const bookTitleInput = document.querySelector('#book-title');
 const bookCoverImage = document.querySelector('#book-cover');
 const bookAuthorInput = document.querySelector('#book-author');
 const bookPagesInput = document.querySelector('#book-pages');
 const bookPublishDateInput = document.querySelector('#book-publish-date');
 const bookReadStatusInput = document.querySelector('#book-read');
+
+
+// Sidebar.
 const numBooksPara = document.querySelectorAll('.num-books');
 const numReadBooksPara = document.querySelectorAll('.num-read-books');
 const numUnfinishedBooksPara = document.querySelectorAll('.num-unfinished-books');
 const deleteDataBtn = document.querySelectorAll('.delete-data');
 
-
 let myLibrary = [];
+let nextId = 0;
+
+// Get books saved locally on page load.
+if (JSON.parse(localStorage.getItem('myLibrary'))) {
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+
+    for (let i = 0; i < myLibrary.length; i++) {
+        createBookEntry(myLibrary[i]);
+    }
+}
 
 function Book(title, URL, author, totalPages, publishDate, isRead) {
     this.title = title;
@@ -24,12 +43,12 @@ function Book(title, URL, author, totalPages, publishDate, isRead) {
     this.totalPages = totalPages;
     this.publishDate = publishDate;
     this.isRead = isRead;
-    this.id = myLibrary.length;
+    this.id = nextId;
 }
 
 function addBookToLibrary() {
     let bookTitle = bookTitleInput.value;
-    let bookImage = bookCoverImage.value;
+    let bookCover = bookCoverImage.value;
     let bookAuthor = bookAuthorInput.value;
     let bookPages = bookPagesInput.value;
     let bookPublishDate = setPublishDate(bookPublishDateInput.value);
@@ -38,14 +57,15 @@ function addBookToLibrary() {
     modal.classList.toggle('hide');
     clearInputs();
 
-    let newBook = new Book(bookTitle, bookImage, bookAuthor, bookPages, bookPublishDate, bookIsRead);
+    let newBook = new Book(bookTitle, bookCover, bookAuthor, bookPages, bookPublishDate, bookIsRead);
 
     myLibrary.push(newBook);
 
     createBookEntry(newBook);
+
     updateBookNums();
 
-    populateStorage(newBook);
+    saveDataToLocalStorage();
 }
 
 function removeBook(e) {
@@ -56,7 +76,7 @@ function removeBook(e) {
 
     updateBookNums();
 
-    localStorage.removeItem(`${e.target.dataset.index}`);
+    saveDataToLocalStorage();
 }
 
 function setPublishDate(date) {
@@ -67,7 +87,7 @@ function setPublishDate(date) {
 
 function createBookEntry(book) {
     let bookCard = document.createElement('div');
-    bookCard.setAttribute("id", `${myLibrary.length-1}`);
+    bookCard.setAttribute("id", `${nextId}`);
     bookCard.classList.add('book');
     
     if (book.coverImage !== '') bookCard.style.cssText = `background: url(${book.coverImage});`;
@@ -96,13 +116,13 @@ function createBookEntry(book) {
     bookReadBtn.textContent = 'Not Read';
 
     let bookRemoveBtn = document.createElement('button');
-    bookRemoveBtn.setAttribute("data-index", `${myLibrary.length-1}`);
+    bookRemoveBtn.setAttribute("data-index", `${nextId}`);
     bookRemoveBtn.classList.add('remove-book');
     bookRemoveBtn.textContent = 'Remove Book';
 
     bookRemoveBtn.addEventListener('click', removeBook);
     bookReadBtn.addEventListener('click', toggleReadStatus);
-    bookReadBtn.setAttribute("data-index", `${myLibrary.length-1}`);
+    bookReadBtn.setAttribute("data-index", `${nextId}`);
 
     bookInfo.append(bookTitle);
     bookInfo.append(bookAuthor);
@@ -112,6 +132,8 @@ function createBookEntry(book) {
     bookInfo.append(bookRemoveBtn);
     bookCard.append(bookInfo);
     bookContainer.append(bookCard);
+
+    nextId++;
 }
 
 function toggleModal(e) {
@@ -128,16 +150,18 @@ function toggleModal(e) {
 }
 
 function clearInputs() {
-bookTitleInput.value = '';
-bookCoverImage.value = '';
-bookAuthorInput.value = '';
-bookPagesInput.value = '';
-bookPublishDateInput.value = '';
-bookReadStatusInput.checked = false;
+    bookTitleInput.value = '';
+    bookCoverImage.value = '';
+    bookAuthorInput.value = '';
+    bookPagesInput.value = '';
+    bookPublishDateInput.value = '';
+    bookReadStatusInput.checked = false;
 }
 
 function updateBookNums() {
-    let numFinishedBooks = countFinishedBooks();
+    let numFinishedBooks = myLibrary.reduce((total, book) => {
+        return book.isRead ? total + 1 : total
+    }, 0);
 
     numBooksPara.forEach(para => {
         para.textContent = `Total Books: ${myLibrary.length}`;
@@ -148,56 +172,31 @@ function updateBookNums() {
     })
 
     numUnfinishedBooksPara.forEach( para => { 
-        updateUnfinishedBooksNum(para, numFinishedBooks);
+        para.textContent = `Unfinished books: ${numFinishedBooks}`;
     });
 }
 
-function updateUnfinishedBooksNum(para, num) {
-    para.textContent = `Unfinished books: ${myLibrary.length - num}`
-}
-
-function countFinishedBooks() {
-    let counter = 0;
-
-    for (let i = 0; i < myLibrary.length; i++) {
-        if (myLibrary[i].isRead) {
-            counter++;
-        }
-    }
-
-    return counter;
-}
-
-function populateStorage(object) {
-    localStorage.setItem(`${object.id}`, JSON.stringify(object));
-}
-
-function getLocalStorageData() {
-    let i = 0;
-
-    while (localStorage.getItem(`${i}`)) {
-        let newBook = JSON.parse(localStorage.getItem(`${i}`));
-
-        myLibrary.push(newBook);
-
-        createBookEntry(newBook);
-        updateBookNums();
-
-        populateStorage(newBook);
-
-        i++;
-    }
+function saveDataToLocalStorage() {
+    localStorage.clear()
+    localStorage.setItem(`myLibrary`, JSON.stringify(myLibrary));
 }
 
 function clearLocalStorage() {
     localStorage.clear()
+
+    let booksNodeList = document.querySelectorAll('.book');
+
+    booksNodeList.forEach(book => {
+        book.remove();
+    })
 }
 
 function toggleReadStatus(e) {
     myLibrary[e.target.dataset.index].isRead = !myLibrary[e.target.dataset.index].isRead;
+
     e.target.classList.toggle('read');
 
-    if ( myLibrary[e.target.dataset.index].isRead) {
+    if (myLibrary[e.target.dataset.index].isRead) {
         e.target.textContent = 'Read';
     }
     else {
@@ -207,8 +206,7 @@ function toggleReadStatus(e) {
     updateBookNums();
 }
 
-getLocalStorageData();
-
+// Event listeners.
 addBookBtn.addEventListener('click', addBookToLibrary);
 cancelBtn.addEventListener('click', toggleModal);
 showModalBtn.forEach(btn => btn.addEventListener('click', toggleModal));

@@ -1,6 +1,5 @@
-const burgerMenuBtn = document.querySelector('.burger-menu');
-const menuOptions = document.querySelector('.mobile-menu');
-const body = document.querySelector('body');
+// Burger menu animation.
+// body, burgerMenuBtn and menuOptions declared and defined in main.js
 let burgerMenuOpen = false;
 
 burgerMenuBtn.addEventListener('click', () => {

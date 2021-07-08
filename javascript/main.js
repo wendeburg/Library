@@ -35,6 +35,17 @@ if (JSON.parse(localStorage.getItem('myLibrary'))) {
         createBookEntry(myLibrary[i]);
     }
 }
+else {
+    let exampleBook = new Book('Don Quijote de la Mancha',
+    'https://upload.wikimedia.org/wikipedia/commons/0/08/Miguel_de_Cervantes_%281605%29_El_ingenioso_hidalgo_Don_Quixote_de_la_Mancha.png',
+    'Miguel de Cervantes', '1345', '1605', false);
+
+    myLibrary.push(exampleBook);
+
+    createBookEntry(exampleBook);
+
+    saveDataToLocalStorage();
+}
 
 function Book(title, URL, author, totalPages, publishDate, isRead) {
     this.title = title;
@@ -90,7 +101,7 @@ function createBookEntry(book) {
     bookCard.setAttribute("id", `${nextId}`);
     bookCard.classList.add('book');
     
-    if (book.coverImage !== '') bookCard.style.cssText = `background: url(${book.coverImage});`;
+    if (book.coverImage !== '') bookCard.style.cssText = `background: url(${book.coverImage}); background-size: cover;`;
 
     let bookInfo = document.createElement('div');
     bookInfo.classList.add('book-info');

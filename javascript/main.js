@@ -27,6 +27,27 @@ const deleteDataBtn = document.querySelectorAll('.delete-data');
 let myLibrary = [];
 let nextId = 0;
 
+class Book {
+    constructor(title, URL, author, totalPages, publishDate, isRead, nextId) {
+        this.title = title;
+        this.coverImage = URL;
+        this.author = author;
+        this.totalPages = totalPages;
+        this.publishDate = publishDate;
+        this.isRead = isRead;
+        this.id = nextId;
+    }
+
+    get isRead() {
+        return this.isRead;
+    }
+
+    set isRead(status) {
+        this.isRead = status;
+    }
+}
+
+
 // Get books saved locally on page load.
 if (JSON.parse(localStorage.getItem('myLibrary'))) {
     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
@@ -34,6 +55,8 @@ if (JSON.parse(localStorage.getItem('myLibrary'))) {
     for (let i = 0; i < myLibrary.length; i++) {
         createBookEntry(myLibrary[i]);
     }
+
+    updateBookNums();
 }
 else {
     let exampleBook = new Book('Don Quijote de la Mancha',
@@ -45,16 +68,6 @@ else {
     createBookEntry(exampleBook);
 
     saveDataToLocalStorage();
-}
-
-function Book(title, URL, author, totalPages, publishDate, isRead) {
-    this.title = title;
-    this.coverImage = URL;
-    this.author = author;
-    this.totalPages = totalPages;
-    this.publishDate = publishDate;
-    this.isRead = isRead;
-    this.id = nextId;
 }
 
 function addBookToLibrary() {
@@ -183,7 +196,7 @@ function updateBookNums() {
     })
 
     numUnfinishedBooksPara.forEach( para => { 
-        para.textContent = `Unfinished books: ${numFinishedBooks}`;
+        para.textContent = `Unfinished books: ${myLibrary.length - numFinishedBooks}`;
     });
 }
 

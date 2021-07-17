@@ -34,16 +34,16 @@ class Book {
         this.author = author;
         this.totalPages = totalPages;
         this.publishDate = publishDate;
-        this.isRead = isRead;
+        this._isRead = isRead;
         this.id = nextId;
     }
 
     get isRead() {
-        return this.isRead;
+        return this._isRead;
     }
 
     set isRead(status) {
-        this.isRead = status;
+        this._isRead = status;
     }
 }
 

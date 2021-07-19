@@ -137,7 +137,9 @@ function createBookEntry(book) {
 
     let bookReadBtn = document.createElement('button');
     bookReadBtn.classList.add('read-book');
-    bookReadBtn.textContent = 'Not Read';
+    bookReadBtn.textContent = book.isRead ? 'Read' : 'Not Read';
+
+    if (book.isRead) bookReadBtn.classList.add('read');
 
     let bookRemoveBtn = document.createElement('button');
     bookRemoveBtn.setAttribute("data-index", `${nextId}`);

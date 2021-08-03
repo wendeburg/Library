@@ -78,7 +78,7 @@
         </div>
 
         <div class="modal-wrap hide">
-            <div class="modal">
+            <form class="new-book-form" onsubmit="return false">
                 <h3>Add a New Book</h3>
                 <div class="input-container">
                     <label for="book-title">Book title*</label>
@@ -105,11 +105,10 @@
                     <input id="book-read" type="checkbox">
                 </div>
                 <div>
-                    <button id="add-book-btn">Add Book</button>
-                    <button id="cancel-btn">Cancel</button>
+                    <button type="submit" id="add-book-btn">Add Book</button>
+                    <button type="button" id="cancel-btn">Cancel</button>
                 </div>
-
-            </div>
+            </form>
         </div>
 
     </body>

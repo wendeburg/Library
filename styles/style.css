@@ -244,6 +244,10 @@ nav {
     outline: none;
 }
 
+.new-book-form input:out-of-range {
+    border: 1px solid red;
+}
+
 .hide {
     display: none;
 }

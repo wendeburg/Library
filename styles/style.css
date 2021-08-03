@@ -174,7 +174,7 @@ nav {
     align-items: center;
 }
 
-.modal {
+.new-book-form {
     height: 80vh;
     width: 40vw;
     min-height: 300px;
@@ -195,11 +195,11 @@ nav {
     align-items: center;
 }
 
-.modal h3 {
+.new-book-form h3 {
     font-size: 24px;
 }
 
-.modal button {
+.new-book-form button {
     width: 90px;
     height: 38px;
     font-size: 16px;
@@ -209,7 +209,7 @@ nav {
     margin-bottom: 20px;
 }
 
-.modal label {
+.new-book-form label {
     align-self: flex-start;
 }
 
@@ -232,7 +232,7 @@ nav {
     background-color: #e43342;
 }
 
-.modal input[type="text"],  input[type="url"], input[type="number"], input[type="date"]{
+.new-book-form input[type="text"],  input[type="url"], input[type="number"], input[type="date"]{
     min-width: 208px;
     width: 30vw;
     height: 40px;
@@ -240,8 +240,12 @@ nav {
     border-radius: 3px;
 }
 
-.modal input:focus {
+.new-book-form input:focus {
     outline: none;
+}
+
+.new-book-form input:out-of-range {
+    border: 1px solid red;
 }
 
 .hide {
@@ -311,7 +315,7 @@ nav {
 }
 
 @media only screen and (max-width: 589px) {
-    .modal {
+    .new-book-form {
         margin-top: 100px;
     }
 

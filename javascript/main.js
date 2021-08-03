@@ -16,6 +16,7 @@ const bookAuthorInput = document.querySelector('#book-author');
 const bookPagesInput = document.querySelector('#book-pages');
 const bookPublishDateInput = document.querySelector('#book-publish-date');
 const bookReadStatusInput = document.querySelector('#book-read');
+const newBookForm = document.querySelector('.new-book-form');
 
 
 // Sidebar.
@@ -71,25 +72,41 @@ else {
 }
 
 function addBookToLibrary() {
-    let bookTitle = bookTitleInput.value;
-    let bookCover = bookCoverImage.value;
-    let bookAuthor = bookAuthorInput.value;
-    let bookPages = bookPagesInput.value;
-    let bookPublishDate = setPublishDate(bookPublishDateInput.value);
-    let bookIsRead = bookReadStatusInput.checked;
+    if (checkFormValidity()) {
+        let bookTitle = bookTitleInput.value;
+        let bookCover = bookCoverImage.value;
+        let bookAuthor = bookAuthorInput.value;
+        let bookPages = bookPagesInput.value;
+        let bookPublishDate = setPublishDate(bookPublishDateInput.value);
+        let bookIsRead = bookReadStatusInput.checked;
 
-    modal.classList.toggle('hide');
-    clearInputs();
+        toggleRequiredFormAttrs(false);
+        modal.classList.toggle('hide');
+        clearInputs();
+    
+        let newBook = new Book(bookTitle, bookCover, bookAuthor, bookPages, bookPublishDate, bookIsRead);
+    
+        myLibrary.push(newBook);
+    
+        createBookEntry(newBook);
+    
+        updateBookNums();
+    
+        saveDataToLocalStorage();
+    }
+}
 
-    let newBook = new Book(bookTitle, bookCover, bookAuthor, bookPages, bookPublishDate, bookIsRead);
+function toggleRequiredFormAttrs(value) {
+    bookTitleInput.required = value;
+    bookAuthorInput.required = value;
+    bookPagesInput.required = value;
+    bookPublishDateInput.required = value;
+    bookReadStatusInput.required = value;
+}
 
-    myLibrary.push(newBook);
-
-    createBookEntry(newBook);
-
-    updateBookNums();
-
-    saveDataToLocalStorage();
+function checkFormValidity() {
+    if (bookTitleInput.checkValidity() && bookAuthorInput.checkValidity() &&
+    bookPagesInput.checkValidity() && bookPublishDateInput.checkValidity()) return true;
 }
 
 function removeBook(e) {
@@ -166,11 +183,13 @@ function toggleModal(e) {
     modal.classList.toggle('hide');
 
     if (e.target.classList.contains('show-modal')) {
+        toggleRequiredFormAttrs(true);
         menuOptions.classList.toggle('show-menu');
         burgerMenuBtn.classList.toggle('open');
         body.classList.toggle('hidden-overflow');
     }
     else if (e.target.id === 'cancel-btn') {
+        toggleRequiredFormAttrs(false);
         clearInputs();
     }
 }
